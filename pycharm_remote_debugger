@@ -1,0 +1,49 @@
+pytest remote debugger
+
+# clone repos to your local laptop 
+git config --global http.sslVerify false
+git clone https://github.com/openshift/assisted-test-infra
+git clone https://gitlab.cee.redhat.com/ocp-edge-qe/kni-assisted-installer-auto.git
+cd assisted-test-infra
+
+# install needed packages , make sure your python version is latests.
+# you can use virtualenv and update version .
+# installing repos requirements (we dont support pip install as package to repo)
+python3.10 -m pip install pip --upgrade 
+python3.10 -m pip install assisted_service_client iniparse --upgrade
+
+Pycharm Gui: (open python project with kni-assisted-installer-auto.git)
+File->Setting->Project -> Python Structure ->
++Add Content Root:
+HOME_PATH="/home/bkopilov/automation
+/${HOME_PATH}/assisted-test-infra/src
+/${HOME_PATH}/kni-assisted-installer-auto
+
+Tools-> Deployment -> Configuration -> + SFTP
+SSH configuration :  create ssh to the hypervisor
+Root path: /root
+
+Mapping tab ->
+Local Path :/home/bkopilov/automation/kni-assisted-installer-auto  | Deployment Path:/kni-assisted-installer-auto
+Local Path :/home/bkopilov/automation/assisted-test-infra/src  | Deployment Path:/assisted-test-infra/src
+
+File->Setting->Project -> Python Interpreter ->
+# create path to the remote python (system)
+Add Interpreter -> On ssh -> Existing -> SSH Server (one from deployment list)
+
+# run test:
+Run -> Edit Configuration -> + Python tests -> pytest
+Script path bullet -> /home/bkopilov/automation/kni-assisted-installer-auto/api_tests/test_ocs_validations.py::TestOCSValidations::test_ocs_failed_to_deploy_ocp_success
+structure: PATH to python file ::  class name :: function name
+
+Environment variables:
+PYTHONPATH=/root/assisted-test-infra/src
+Python interpreter: Remote Python 
+Working Directory: /home/bkopilov/automation/assisted-test-infra/src
+V on Add content roots to PYTHONPATH
+V on Add source roots to PYTHONPATH
+
+
+
+
+
