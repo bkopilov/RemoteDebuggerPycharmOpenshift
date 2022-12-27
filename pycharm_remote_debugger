@@ -30,6 +30,10 @@ Local Path :/home/bkopilov/automation/assisted-test-infra/src  | Deployment Path
 File->Setting->Project -> Python Interpreter ->
 # create path to the remote python (system)
 Add Interpreter -> On ssh -> Existing -> SSH Server (one from deployment list)
+Will create another deployment path in Tools-> Deployment -> Configuration , Make sure the mapping is:
+Local Path :/home/bkopilov/automation/kni-assisted-installer-auto  | Deployment Path:/kni-assisted-installer-auto
+Local Path :/home/bkopilov/automation/assisted-test-infra/src  | Deployment Path:/assisted-test-infra/src
+
 
 # run test:
 Run -> Edit Configuration -> + Python tests -> pytest
