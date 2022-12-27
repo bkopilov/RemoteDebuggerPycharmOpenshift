@@ -1,0 +1,10 @@
+# enable debug add --trace and colors in assisted-test-infra/Makefile
+
+_test: $(REPORTS) _test_setup
+	JUNIT_REPORT_DIR=$(REPORTS) python3 ${DEBUG_FLAGS} -m pytest --error-for-skips $(or ${TEST},src/tests) -k $(or ${TEST_FUNC},'') -m $(or ${TEST_MARKER},'') --verbose 
+-s --trace --pdbcls=IPython.terminal.debugger:TerminalPdb --color=yes --code-highlight=yes  --junit-xml=$(PYTEST_JUNIT_FILE)
+
+
+export TEST_FUNC=test_no_proxy_set_to_assisted_service_base_url
+cd assisted-test-infra
+make test
