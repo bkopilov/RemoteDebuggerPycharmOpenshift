@@ -66,6 +66,9 @@ pip install -r /root/assisted-test-infra/requirements.txt
 # run script to prepeare envirement
 scripts/install_environment.sh
 #scripts/install_environment.sh config_nginx
+# start loadbalancer when needed:
+#              
+# podman run -d --rm --dns=127.0.0.1 --net=host --name=load_balancer -v /root/.test-infra/etc/nginx/conf.d:/etc/nginx/connf.d quay.io/odepaz/dynamic-load-balancer:latest
 #scripts/install_environment.sh config_squid
 
 # copy params for tests - pull_secret and test params... need to copy from web.... - TBD 
