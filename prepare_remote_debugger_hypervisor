@@ -65,7 +65,8 @@ pip install -r /root/assisted-test-infra/requirements.txt
 
 # run script to prepeare envirement
 scripts/install_environment.sh
-
+#scripts/install_environment.sh config_nginx
+#scripts/install_environment.sh config_squid
 
 # copy params for tests - pull_secret and test params... need to copy from web.... - TBD 
 # note that minikube REMOTE_SERVICE_URL on port 6500
